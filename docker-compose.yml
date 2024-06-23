@@ -1,0 +1,17 @@
+version: "3"
+services:
+  webapp:
+    container_name: capacity_care_app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    volumes:
+      - .:/usr/src/app
+  database:
+    container_name: capacity_care_db
+    image: mongo
+    ports:
+      - "27017:27017"
