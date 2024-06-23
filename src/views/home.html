@@ -18,7 +18,6 @@
           </div>
           <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
             <a href="/home" class="border-orange-400 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
-          
           </div>
         </div>
 
@@ -32,21 +31,32 @@
   <!-- Posts -->
   <div class="mx-auto max-w-6xl mt-10">
     <div class="flex justify-between">
-      <p class="text-4xl font-medium">
-         Posts
-      </p>
-      <button class="px-5 bg-blue-700 text-white rounded-md">
-        Add post
-      </button>
+      <p class="text-4xl font-medium">Posts</p>
+      <button id="addPostButton" class="px-5 bg-blue-700 text-white rounded-md">Add post</button>
     </div>
     <hr class="ml-3 mt-2 border-1 border-gray-300">
   </div>
 
-  
+  <!-- The Form -->
+  <div id="postFormContainer" class="hidden mt-10 mx-auto max-w-6xl">
+    <form id="postForm" class="bg-white p-6 rounded-lg shadow-md">
+      <div>
+        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+        <input type="text" id="title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div class="mt-4">
+        <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+        <textarea id="content" name="content" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:bg-green-700">Submit</button>
+      </div>
+    </form>
+  </div>
 
+  <!-- Posts List -->
+  <div id="postList" class="mt-10 mx-auto max-w-6xl space-y-4"></div>
 
-  
-
-  <script src="/js/home.js"></script>
+  <script src="../js/home.js"></script>
 </body>
 </html>

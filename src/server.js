@@ -3,6 +3,7 @@ const path = require('path');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const Post = require('./models/Post');
 const app = express();
 
 // Middleware to parse request body
@@ -41,8 +42,10 @@ app.use(express.static(path.join(__dirname, 'assets')));
 // Routes
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const postRoutes = require('./routes/postRoutes');
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/profiles', profileRoutes);
+app.use('/api/v1/posts', postRoutes);
 
 // Login route
 app.post('/api/v1/login', async (req, res) => {
@@ -52,7 +55,7 @@ app.post('/api/v1/login', async (req, res) => {
     if (!user) {
       return res.status(401).send('Invalid email or password');
     }
-    req.session.userId = user._id;
+    req.session.userId = user._id; // Asegurarse de que userId se guarda en la sesión
     res.send('Login successful');
   } catch (error) {
     res.status(500).send('Internal server error');
