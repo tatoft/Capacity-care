@@ -22,15 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
   postForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
+    const formData = new FormData();
+    formData.append('title', document.getElementById('title').value);
+    formData.append('content', document.getElementById('content').value);
+    formData.append('image', document.getElementById('image').files[0]);
 
     const response = await fetch('/api/v1/posts', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, content }),
+      body: formData
     });
 
     if (response.ok) {
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     postList.innerHTML = '';
     posts.forEach(post => {
       const postItem = document.createElement('div');
-      postItem.classList.add('bg-white', 'p-4', 'rounded-md', 'shadow-md');
+      postItem.classList.add('bg-white', 'p-6', 'rounded-lg', 'shadow-md', 'mt-4');
       postItem.innerHTML = `
         <div class="flex justify-between items-center">
           <div class="flex items-center space-x-4">
@@ -59,11 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="ml-2 text-lg font-semibold">${post.userId.name}</div>
           </div>
           <div class="text-gray-500">${new Date(post.createdAt).toLocaleDateString()}</div>
-        </div>
+          </div>
+          <hr class="ml-14 border-black border-1">
         <div class="mt-4">
           <div class="text-xl font-bold">${post.title}</div>
           <div class="mt-2 text-gray-700">${post.content}</div>
         </div>
+        ${post.image ? `<img src="data:image/jpeg;base64,${post.image}" alt="Post image" class="mt-4 rounded-md h-full w-60 mx-auto"/>` : ''}
       `;
       postList.appendChild(postItem);
     });
