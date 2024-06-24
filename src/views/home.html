@@ -6,7 +6,7 @@
   <title>CareConnect | Home</title>
   <link href="../css/output.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col min-h-screen">
   <!-- NAV -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +17,8 @@
             <span class="ml-2 text-xl font-bold">CareConnect</span>
           </div>
           <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-            <a href="/home" class="border-orange-400 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+            <a href="/home" class="hover:border-orange-400 text-gray-900 inline-flex items-center transition-all px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+            <a href="/about" class="hover:border-orange-400 text-gray-900 inline-flex items-center transition-all px-1 pt-1 border-b-2 text-sm font-medium">About</a>
           </div>
         </div>
 
@@ -29,37 +30,53 @@
   </nav>
 
   <!-- Posts -->
-  <div class="mx-auto max-w-6xl mt-10">
-    <div class="flex justify-between">
-      <p class="text-4xl font-medium">Posts</p>
-      <button id="addPostButton" class="px-5 bg-blue-700 text-white rounded-md hover:bg-blue-800">Add post</button>
+  <main class="flex-grow">
+    <div class="mx-auto max-w-6xl mt-10">
+      <div class="flex justify-between">
+        <p class="text-4xl font-medium">Posts</p>
+        <button id="addPostButton" class="px-5 bg-blue-700 text-white rounded-md hover:bg-blue-800">Add post</button>
+      </div>
+      <hr class="ml-3 mt-2 border-1 border-gray-300">
     </div>
-    <hr class="ml-3 mt-2 border-1 border-gray-300">
-  </div>
 
-  <!-- The Form -->
-  <div id="postFormContainer" class="hidden mt-10 mx-auto max-w-6xl">
-    <form id="postForm" class="bg-white p-6 rounded-lg shadow-md">
-      <div>
-        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-        <input type="text" id="title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-      <div class="mt-4">
-        <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-        <textarea id="content" name="content" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-      </div>
-      <div class="mt-4">
-        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-        <input type="file" id="image" name="image" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-      <div class="mt-4">
-        <button type="submit" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:bg-red-700">Submit</button>
-      </div>
-    </form>
-  </div>
+    <!-- The Form -->
+    <div id="postFormContainer" class="hidden mt-10 mx-auto max-w-6xl">
+      <form id="postForm" class="bg-white p-6 rounded-lg shadow-md">
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+          <input type="text" id="title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div class="mt-4">
+          <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+          <textarea id="content" name="content" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+        </div>
+        <div class="mt-4">
+          <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+          <input type="file" id="image" name="image" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div class="mt-4">
+          <button type="submit" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:bg-red-700">Submit</button>
+        </div>
+      </form>
+    </div>
 
-  <!-- Posts List -->
-  <div id="postList" class="mt-10 mx-auto max-w-xl space-y-4"></div>
+    <!-- Posts List -->
+    <div id="postList" class="mt-10 mx-auto max-w-xl space-y-4"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <p class="text-sm">&copy; 2024 CareConnect. All rights reserved.</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="/about" class="text-sm hover:underline">Acerca de</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="../js/home.js"></script>
 </body>
