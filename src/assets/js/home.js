@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (response.ok) {
+      alert('Created post')
       postForm.reset();
       postFormContainer.classList.add('hidden');
       fetchPosts();
