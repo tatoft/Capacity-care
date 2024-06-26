@@ -39,14 +39,17 @@ function isAuthenticated(req, res, next) {
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'js')));
 
 // Rutas
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const postRoutes = require('./routes/postRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/profiles', profileRoutes);
 app.use('/api/v1/posts', upload.single('image'), postRoutes);
+app.use('/messages', messageRoutes);
 
 // Ruta de login
 app.post('/api/v1/login', async (req, res) => {
@@ -57,7 +60,7 @@ app.post('/api/v1/login', async (req, res) => {
       return res.status(401).send('Invalid email or password');
     }
     req.session.userId = user._id;
-    res.send('Login successful');
+    res.json({ message: 'Login successful', userId: user._id });
   } catch (error) {
     res.status(500).send('Internal server error');
   }
@@ -89,6 +92,10 @@ app.get('/home', isAuthenticated, (req, res) => {
 
 app.get('/about', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'about.html'));
+});
+
+app.get('/messages', isAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'messages.html'));
 });
 
 // Redireccionar raíz a login
